@@ -23,6 +23,7 @@ class Paint{
                         break
                     }
                 }
+                console.log(isFilled)
                 if(isFilled){
                     numericalrepresentanion.push(1)
                     cellsToDraw.push({x,y})
@@ -95,21 +96,23 @@ const addToStatistic = (name, numericalRepresentanion) => {
         }
        })
 }
-    document.getElementById("C").onclick = () =>{
-        paint.clear()
+document.getElementById("C").onclick = () =>{
+    paint.clear()
+}
+document.getElementById("V").onclick = () =>{
+   const numericalRepresentanion = paint.toNumericalRepresentation(true)
+   addToStatistic(prompt("What is on the image?"), numericalRepresentanion)
+   paint.clear()
+}
+document.getElementById("B").onclick = () =>{
+    const neuralNetwork = new brain.NeuralNetwork()
+    neuralNetwork.train(statistic, {log: true})
+    const numericalRepresentanion = paint.toNumericalRepresentation()
+    const result = brain.likely(numericalRepresentanion,neuralNetwork)
+    if(confirm(`Is there ${result} on picrute?`)){
+        addToStatistic(result,  numericalRepresentanion)
+    }else{
+        addToStatistic(prompt("Then what is on the image?"), numericalRepresentanion)
     }
-    document.getElementById("V").onclick = () =>{
-       const numericalRepresentanion = paint.toNumericalRepresentation(true)
-       addToStatistic(prompt("What is on the image?"), numericalRepresentanion)
-    }
-    document.getElementById("B").onclick = () =>{
-        const neuralNetwork = new brain.NeuralNetwork()
-        neuralNetwork.train(statistic, {log: true})
-        const numericalRepresentanion = paint.toNumericalRepresentation()
-        const result = brain.likely(numericalRepresentanion,neuralNetwork)
-        if(confirm(`Is there ${result} on picrute?`)){
-            addToStatistic(result,  numericalRepresentanion)
-        }else{
-            addToStatistic(prompt("Then what is on the image?"), numericalRepresentanion)
-        }
-    }
+    paint.clear()
+}
