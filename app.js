@@ -103,7 +103,7 @@ document.getElementById("C").onclick = () =>{
 document.getElementById("V").onclick = () =>{
    const numericalRepresentanion = paint.toNumericalRepresentation(true)
    addToStatistic(prompt("What is on the image?"), numericalRepresentanion)
-   paint.clear()
+   setTimeout(() => paint.clear(), 2000)
 }
 document.getElementById("B").onclick = () =>{
     const neuralNetwork = new brain.NeuralNetwork()
