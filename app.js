@@ -22,7 +22,7 @@ class Paint{
                         isFilled = true
                         break
                     }
-                }
+                }     
                 console.log(isFilled)
                 if(isFilled){
                     numericalrepresentanion.push(1)
@@ -86,6 +86,7 @@ class Paint{
     }
 }
 const paint = new Paint(300,300,7,"red")
+paint.clear()
 paint.run()
 const statistic = []
 const addToStatistic = (name, numericalRepresentanion) => {
