@@ -95,15 +95,14 @@ const addToStatistic = (name, numericalRepresentanion) => {
         }
        })
 }
-document.addEventListener("keypress", ({code}) =>{
-    if(code == 'KeyC') {
+    document.getElementById("C").onclick = () =>{
         paint.clear()
     }
-    if(code == 'KeyV') {
+    document.getElementById("V").onclick = () =>{
        const numericalRepresentanion = paint.toNumericalRepresentation(true)
        addToStatistic(prompt("What is on the image?"), numericalRepresentanion)
     }
-    if(code == "KeyB") {
+    document.getElementById("B").onclick = () =>{
         const neuralNetwork = new brain.NeuralNetwork()
         neuralNetwork.train(statistic, {log: true})
         const numericalRepresentanion = paint.toNumericalRepresentation()
@@ -114,4 +113,3 @@ document.addEventListener("keypress", ({code}) =>{
             addToStatistic(prompt("Then what is on the image?"), numericalRepresentanion)
         }
     }
-})
